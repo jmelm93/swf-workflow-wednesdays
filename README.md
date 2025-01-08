@@ -7,8 +7,8 @@ Welcome to the SEO Workflows repository for AI Workflow Wednesdays! Every Wednes
 This repository is organized by week, with each week's tool residing in its own directory. Inside each directory, you'll find:
 
 - **`{week_num}-{flow_name}.json`**: The Langflow configuration file for the specific tool.
-- **/prompts directory**: The finalized prompt used in the tool.
-- **/custom_code directory**: The custom code used in the tool (if needed).
+- **`/prompts` directory**: The finalized prompt used in the tool.
+- **`/custom_code` directory**: The custom code used in the tool (if needed).
 - **`README.md`**: A detailed guide specific to that tool, including required environment variables and usage instructions.
 
 ## Getting Started:

@@ -1,5 +1,7 @@
 # Week 1 - Internal Link Placement Agent
 
+_You can find the video tutorial for this tool here: [Watch on YouTube](https://www.youtube.com/watch?v=mDMLxqcB85Y)._
+
 ## Overview
 
 This tool is designed to help with internal link placement strategy. It leverages AI to analyze web pages, generate summaries, and identify optimal linking opportunities within your content.

@@ -605,7 +605,7 @@
           "type": "Agent"
         },
         "dragging": false,
-        "height": 664,
+        "height": 670,
         "id": "Agent-92XvH",
         "position": {
           "x": 2227.028048088283,
@@ -902,7 +902,7 @@
           "type": "ChatInput"
         },
         "dragging": false,
-        "height": 232,
+        "height": 234,
         "id": "ChatInput-Ohofd",
         "position": {
           "x": 1314.669925691901,
@@ -1144,7 +1144,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 480,
+        "height": 483,
         "positionAbsolute": {
           "x": 1832.8840815063604,
           "y": 933.0563991238163
@@ -1757,7 +1757,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 664,
+        "height": 670,
         "positionAbsolute": {
           "x": 3135.5447824986813,
           "y": 470.24648724473946
@@ -1801,7 +1801,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "Use Tavily Search to investigate the top 3 results for the query and analyze the findings.\n\nSteps:\n1. Search using the provided query and get the top 3 results\n2. Analyze search results\n3. Ensure the pages are informational intent (are not product pages, commercial category pages, website homepages)\n4. Supply the list of search results with informational intent\n\nFormat findings as:\n\nSEARCH RESULTS:\n[Search result URLs where the pages have an informational intent]",
+                "value": "Use the **TavilySearchResults** tool to search for a given [topic] and analyze the results to provide a list of URLs with informational intent.\n\n# Steps\n\n1. **Extract Topic**: Retrieve the [topic] from the input message.\n2. **Search**: Use the extracted [topic] with the **TavilySearchResults** tool to perform a search.\n3. **Analyze Results**:\n   - Review the search results to determine the intent of each page.\n   - Exclude pages that are product pages, commercial category pages, or website homepages.\n4. **Compile Results**: Create a list of URLs that have informational intent.\n\n# Output Format\n\n[Search result URLs where the pages have an informational intent]\n",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -1820,7 +1820,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Get Top Editorial SERP Prompt",
+            "display_name": "GetEditorialSERP",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -1860,7 +1860,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 278,
+        "height": 280,
         "positionAbsolute": {
           "x": 1835.7647267495158,
           "y": 1466.33517514173
@@ -1904,7 +1904,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "<instructions>\n<steps_to_complete>\n\nUse **FirecrawlScrapeApiTool** to get the complete markdown content of each page from the SEARCH RESULTS.\n\n1. **Scrape each page** from <chat_memory> using FirecrawlScrapeApiTool.\n2. **Collect** and **organize** the content in a well-structured markdown format.\n3. **Extract all headers** (h1, h2, h3, h4, h5, h6 if available). For each major header (e.g., h1, h2, etc.), create a new **Section** using the format from the example below. If a particular header or subheader is missing for the page, skip it (do not output a placeholder).\n4. Under each **Section**, provide:\n    - A **Key Points** sub-section with up to 3 bullet points of concise summaries.\n    - A **Section Subheadings** sub-section that lists each subheading (e.g., h3, h4) with a short overview of its content. If a section is empty, output a single bullet point noting \"There are no subheaders for this section\".\n5. **Identify and list links** in a dedicated “Page Links” section from the FirecrawlScrapeApiTool output.\n6. Ensure the final response is easy to read and well-formatted.\n\n**IMPORTANT**: For each page, use the following structure **exactly as described below**. Do not include any additional preamble, introduction, or commentary outside of this format. Your final response **MUST start** with `## Competitive Page Review:` followed by the exact structure described in the `<output_template>`.\n\n</steps_to_complete>\n\n<output_template>\n\n## Competitive Page Review:\n\n### URL: [Insert URL Here]\n\n#### Content Overview:\n**Section: [Insert Main Content Header]** \n\n- **Key Points:**\n    - [Insert 1 to 3 key points from the section]\n- **Section Subheadings:**\n    - **[Insert Subheading 1]**: [Insert concise overview of content within the subheading]\n    - **[Insert Subheading 2]**: [Insert concise overview of content within the subheading]\n\n(Continue this pattern for each main heading on the page)\n\n#### Page Links:\n- [https://domain.com/page-example](https://domain.com/page-example)\n- [https://domain1.com/page-example](https://domain1.com/page-example)\n- (Continue this pattern for each unique link found for the page)\n\n(Continue this pattern for each unique page)\n</output_template>\n</instructions>",
+                "value": "Use **FirecrawlScrapeApiTool** to scrape each page from the search results and organize the content into a well-structured markdown summaries as dictated in the steps below.\n\n# Steps\n\n1. **Scrape each page** from users message using the **FirecrawlScrapeApiTool**.\n2. **Collect** and **organize** the content in a well-structured markdown format.\n3. **Extract all headers** (h1, h2, h3, h4, h5, h6 if available). For each major header (e.g., h1, h2), create a new **Section** using the format provided. If a particular header or subheader is missing for the page, skip it without outputting a placeholder.\n4. Under each **Section**, provide:\n   - A **Key Points** sub-section with up to 3 bullet points of concise summaries.\n   - A **Section Subheadings** sub-section that lists each subheading (e.g., h3, h4) with a short overview of its content. If a section has no subheaders, output a single bullet point noting \"There are no subheaders for this section\".\n5. **Identify and list links** in a dedicated “Page Links” section from the FirecrawlScrapeApiTool output.\n6. Ensure the final response is easy to read and well-formatted.\n\n**Important Considerations**\n\n**IMPORTANT**: For each page, use the following structure **exactly as described below**. Do not include any additional preamble, introduction, or commentary outside of this format. Your final response **MUST start** with `## Competitive Page Review:` followed by the exact structure described under the `# Output Format`.\n\n# Output Format\n\n## Competitive Page Review:\n\n### URL: [Insert URL Here]\n\n#### Content Overview:\n\n**Section: [Insert Main Content Header]**\n\n- **Key Points:**\n  - [Insert 1 to 3 key points from the section]\n- **Section Subheadings:**\n  - **[Insert Subheading 1]**: [Insert concise overview of content within the subheading]\n  - **[Insert Subheading 2]**: [Insert concise overview of content within the subheading]\n\n(Continue this pattern for each main heading on the page)\n\n#### Page Links:\n\n- [https://domain.com/page-example](https://domain.com/page-example)\n- [https://domain1.com/page-example](https://domain1.com/page-example)\n- (Continue this pattern for each unique link found for the page)\n\n(Continue this pattern for each unique page)\n\n# Notes\n\n- If a section lacks subheadings, ensure to note \"There are no subheaders for this section\".\n- Maintain consistency in formatting to ensure readability.",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -1923,7 +1923,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Competitive Page Content Analysis Prompt",
+            "display_name": "GetCompetitivePageSummaries",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -1963,7 +1963,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 298,
+        "height": 300,
         "positionAbsolute": {
           "x": 2773.209215139037,
           "y": 984.1816064613063
@@ -2311,7 +2311,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 668,
+        "height": 674,
         "dragging": false,
         "positionAbsolute": {
           "x": 3820.6334574264797,
@@ -2355,7 +2355,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "<instructions>\nYou will be provided with content outlines and lists of links from multiple pages. Your task is to consolidate the links from across these outputs.\n\n<steps_to_complete>\n1. Identify the \"Page Links\" section in the provided outputs.\n2. Extract all links listed under \"Page Links\" for each page.\n3. Remove duplicate links to create a consolidated list of unique links.\n4. For each unique link, list **all the pages** (by their respective page URLs) where the link was found.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of this structure. The start of your response MUST be \"## Consolidated Links:\".\n\n</steps_to_complete>\n<output_template>\n\n## Consolidated Links:  \n\n| Link                                                                                     | Found on                                                                           |\n| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |\n| [https://domain1.com](https://domain1.com) | [https://linkingpage1.com/page](https://linkingpage1.com/page), [https://linkingpage2.com/page](https://linkingpage2.com/page) |\n| [https://domain2.com](https://domain1.com) | [https://linkingpage1.com/page](https://linkingpage1.com/page) |\n\n</output_template>\n</instructions>",
+                "value": "You will be provided with content outlines and lists of links from multiple pages. Your task is to consolidate the links from across these outputs.\n\n# Steps\n\n1. Identify the \"Page Links\" section in the provided outputs.\n2. Extract all links listed under \"Page Links\" for each page.\n3. Remove duplicate links to create a consolidated list of unique links.\n4. For each unique link, list **all the pages** (by their respective page URLs) where the link was found.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of this structure. The start of your response MUST be \"## Consolidated Links:\".\n\n# Output Format\n\n- Start with \"## Consolidated Links:\".\n- Present the data as a markdown table with two columns: \"Link\" and \"Found on\".\n- Format each link as [https://domain.com](https://domain.com).\n- In the \"Found on\" column, list all page URLs where the link was found, separated by commas, each formatted as [https://linkingpage.com/page](https://linkingpage.com/page).\n- Do not use code blocks.\n\n# Examples\n\n## Consolidated Links:\n\n| Link                                       | Found on                                                                                                                       |\n| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |\n| [https://domain1.com](https://domain1.com) | [https://linkingpage1.com/page](https://linkingpage1.com/page), [https://linkingpage2.com/page](https://linkingpage2.com/page) |\n| [https://domain2.com](https://domain2.com) | [https://linkingpage1.com/page](https://linkingpage1.com/page)                                                                 |\n",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -2374,7 +2374,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Links Prompt",
+            "display_name": "AggregatePageLinks",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -2407,15 +2407,14 @@
             "error": null,
             "edited": false,
             "metadata": {},
-            "tool_mode": false,
-            "lf_version": "1.1.1"
+            "tool_mode": false
           },
           "type": "Prompt",
           "id": "Prompt-l84Gy"
         },
         "selected": false,
         "width": 320,
-        "height": 258,
+        "height": 260,
         "positionAbsolute": {
           "x": 3818.106349842483,
           "y": 567.8559719056918
@@ -2459,7 +2458,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "<instructions>\nYou will be provided with content outlines from multiple pages in a specific format. Your task is to analyze these outlines to identify **recurring topics** that appear across multiple pages. These recurring topics will be used to create a content brief or plan for SEO optimization.\n\n<steps_to_complete>\n1. Focus on the \"Content Overview\" section of each page's output, reviewing the headers and their summaries.\n2. Identify **recurring topics or themes** that appear across multiple pages. Look for specific terms, concepts, or sections that repeat or overlap.\n3. Provide actionable insights or recommendations based on the recurring topics, indicating how they could inform or improve an SEO-oriented content plan.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of this specified structure. Your response MUST start with \"## Recurring Topics:\".\n</steps_to_complete>\n\n<output_format>\n\n## Recurring Topics:  \n\n**[Insert Topic 1]**  \n\n   - Pages Mentioning Topic 1: [Domain 1](https://domain1.com/page), [Domain 2](https://domain2.com/page), etc.\n   - Reason or Summary: [Brief explanation of why this topic is relevant]\n\n**[Insert Topic 2]**  \n\n   - Pages Mentioning Topic 2: [Domain 1](https://domain1.com/page), [Domain 2](https://domain2.com/page), etc.\n   - Reason or Summary: [Brief explanation of why this topic is relevant]\n\n(Continue for all identified recurring topics...)\n\n## Insights for SEO Optimization:  \n\n- **[Insight Focus Area]**: [Actionable recommendation related to recurring topics]  \n- **[Insight Focus Area]**: [Actionable recommendation related to recurring topics]  \n- (Continue for all identified insight focus areas...)\n\n</output_format>\n</instructions>",
+                "value": "You will be provided with content outlines from multiple pages in a specific format. Your task is to analyze these outlines to identify **recurring topics** that appear across multiple pages. These recurring topics will be used to create a content brief or plan for SEO optimization.\n\n# Steps\n\n1. Focus on the \"Content Overview\" section of each page's output, reviewing the headers and their summaries.\n2. Identify recurring topics or themes that appear across multiple pages by looking for specific terms, concepts, or sections that repeat or overlap.\n3. Provide actionable insights or recommendations based on the recurring topics, indicating how they could inform or improve an SEO-oriented content plan.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of this specified structure. Your response MUST start with \"## Recurring Topics:\".\n\n# Output Format\n\n## Recurring Topics:\n\n**[Insert Topic 1]**\n\n- Pages Mentioning Topic 1: [Domain 1](https://domain1.com/page), [Domain 2](https://domain2.com/page), etc.\n- Reason or Summary: [Brief explanation of why this topic is relevant]\n\n**[Insert Topic 2]**\n\n- Pages Mentioning Topic 2: [Domain 1](https://domain1.com/page), [Domain 2](https://domain2.com/page), etc.\n- Reason or Summary: [Brief explanation of why this topic is relevant]\n\n(Continue for all identified recurring topics...)\n\n## Insights for SEO Optimization:\n\n- **[Insight Focus Area]**: [Actionable recommendation related to recurring topics]\n- **[Insight Focus Area]**: [Actionable recommendation related to recurring topics]\n- (Continue for all identified insight focus areas...)\n",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -2478,7 +2477,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Recurring Topics Prompt",
+            "display_name": "AggregateRecurringTopics",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -2511,15 +2510,14 @@
             "error": null,
             "edited": false,
             "metadata": {},
-            "tool_mode": false,
-            "lf_version": "1.1.1"
+            "tool_mode": false
           },
           "type": "Prompt",
           "id": "Prompt-6ldVU"
         },
         "selected": false,
         "width": 320,
-        "height": 258,
+        "height": 260,
         "positionAbsolute": {
           "x": 4208.866970015098,
           "y": 572.6746376434256
@@ -2867,7 +2865,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 668,
+        "height": 674,
         "dragging": false,
         "positionAbsolute": {
           "x": 4218.491076263336,
@@ -2878,8 +2876,8 @@
         "id": "CustomComponent-b3RZ3",
         "type": "genericNode",
         "position": {
-          "x": 2772.3711964987224,
-          "y": 1763.2160912697695
+          "x": 2795.9150647307974,
+          "y": 1480.6896724848698
         },
         "data": {
           "node": {
@@ -3025,10 +3023,10 @@
         },
         "selected": false,
         "width": 320,
-        "height": 474,
+        "height": 479,
         "positionAbsolute": {
-          "x": 2772.3711964987224,
-          "y": 1763.2160912697695
+          "x": 2795.9150647307974,
+          "y": 1480.6896724848698
         },
         "dragging": false
       },
@@ -3036,8 +3034,8 @@
         "id": "Agent-XMTZ3",
         "type": "genericNode",
         "position": {
-          "x": 3129.805439616724,
-          "y": 1826.1094320422258
+          "x": 3160.076127343678,
+          "y": 1520.0391450252507
         },
         "data": {
           "node": {
@@ -3638,10 +3636,10 @@
         },
         "selected": false,
         "width": 320,
-        "height": 644,
+        "height": 650,
         "positionAbsolute": {
-          "x": 3129.805439616724,
-          "y": 1826.1094320422258
+          "x": 3160.076127343678,
+          "y": 1520.0391450252507
         },
         "dragging": false
       },
@@ -3649,8 +3647,8 @@
         "id": "Prompt-hvprq",
         "type": "genericNode",
         "position": {
-          "x": 2773.95538860578,
-          "y": 2260.2932116028687
+          "x": 2800.82539102098,
+          "y": 1981.5169365451661
         },
         "data": {
           "node": {
@@ -3682,7 +3680,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "Use **PageKeywordsExtractorTool** to get the page and keywords for each URL provided.\n\nFollow the below steps: \n\n1. **Get keywords for each page** using PageKeywordsExtractorTool.\n2. **Collect** and **organize** the content in a markdown table including the keyword data and the corresponding URL.\n\n**IMPORTANT**: For each page, use the following structure **exactly as described in the <example_response> below**. Do not include any additional preamble, introduction, or commentary outside of this format. Your response must start with \"## Competitive Keyword Targets:\".\n\n<example_response>\n\n## Competitive Keyword Targets:  \n\n| URL                     | Keywords                                                     |\n|-------------------------|--------------------------------------------------------------|\n| https://example.com     | apples (120 searches/mo), bananas (95 searches/mo), ...      |\n| https://anotherexample.com | cameras (500 searches/mo), lenses (300 searches/mo), ...  |\n\n</example_response>",
+                "value": "Use the **PageKeywordsExtractorTool** to extract keywords from each provided URL and organize them into a markdown table.\n\n# Steps\n\n1. **Extract Keywords**: Use the **PageKeywordsExtractorTool** to retrieve keywords for each URL.\n2. **Organize Data**: Compile the extracted keywords and their search volumes into a markdown table alongside the corresponding URLs.\n\n**IMPORTANT**: Your output must start with \"## Competitive Keyword Targets:\" followed by a markdown table with two columns: \"URL\" and \"Keywords\". Each row should list the URL and its associated keywords along with their monthly search volumes, formatted as in the example below. Do not include any additional text, preamble, or commentary outside of this format.\n\n# Example\n\n## Competitive Keyword Targets:\n\n| URL                        | Keywords                                                 |\n| -------------------------- | -------------------------------------------------------- |\n| https://example.com        | apples (120 searches/mo), bananas (95 searches/mo), ...  |\n| https://anotherexample.com | cameras (500 searches/mo), lenses (300 searches/mo), ... |\n\n(For actual use, replace the example URLs and keywords with real data.)",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -3701,7 +3699,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Competitive Keyword Extraction Prompt",
+            "display_name": "GetCompetitiveKeywords",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -3741,10 +3739,10 @@
         },
         "selected": false,
         "width": 320,
-        "height": 258,
+        "height": 260,
         "positionAbsolute": {
-          "x": 2773.95538860578,
-          "y": 2260.2932116028687
+          "x": 2800.82539102098,
+          "y": 1981.5169365451661
         },
         "dragging": false
       },
@@ -3840,7 +3838,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 252,
+        "height": 254,
         "dragging": false,
         "positionAbsolute": {
           "x": 6343.890184566241,
@@ -4188,7 +4186,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 668,
+        "height": 674,
         "positionAbsolute": {
           "x": 5346.547305181655,
           "y": 720.2544098708647
@@ -4232,7 +4230,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "<instructions>\nYou are an expert SEO content strategist. Your task is to create a comprehensive, SEO-optimized content outline based on the provided information. This outline should be structured to maximize search engine visibility and user engagement.\n\n<input_data>\n\nThe input data will be provided in a structured format, including:\n\n-   **Competitive Keyword Targets:** A table listing URLs and their associated target keywords with search volume.\n-   **Recurring Topics:** A list of topics identified across competitive pages, including the pages where they appear and a summary of their importance.\n-   **Insights for SEO Optimization:** A list of key takeaways for optimizing the content.\n-   **Consolidated External Links:** A list of external links found on competitive pages.\n-   **Competitive Page Review:** Detailed content overviews for each competitive URL, including section titles, key points, and subheadings.\n\n</input_data>\n\n<output_requirements>\n\nBased on the input data, generate a detailed content outline that includes:\n\n1.  **Main Section Headers (H2s):**  These should be the primary sections of the content. Use the recurring topics and competitive page reviews to determine the most important sections. Each H2 should be optimized for relevant keywords.\n2.  **Sub-Section Headers (H3s):** For each main section, include relevant sub-sections that further break down the topic. Use the competitive page reviews to identify relevant sub-topics.\n3.  **Content Outline for Each Section:** For each H2 and H3, provide a brief outline of the content that should be included. This should be based on the competitive page reviews, recurring topics, and SEO insights.\n4.  **Media Ideas:** For each section (H2), suggest relevant media that could enhance the content and user engagement. This could include images, videos, infographics, interactive elements, survey results, or other creative content.\n\n**Important Considerations:**\n\n*   **Keyword Optimization:** Use the provided keyword targets to inform the selection of section headers and content. Prioritize keywords with higher search volume.\n*   **Competitive Analysis:** Leverage the competitive page reviews to understand the structure and content of top-ranking pages. Identify gaps and opportunities to create more comprehensive and valuable content.\n*   **User Intent:** Ensure the content addresses the user's search intent for the target keywords.\n*   **SEO Best Practices:** Follow SEO best practices for on-page optimization, including the use of headers, keywords, and internal/external links.\n*   **Uniqueness:** While referencing competitive pages, ensure the content is unique and provides added value.\n*   **Actionable Insights:** The outline should provide clear guidance for content creation, not just a summary of existing information.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of this specified structure. Your response MUST start with \"## Content Outline:\".\n\n</output_requirements>\n\n<example_output_template>\n\n## Content Outline:\n\n**H2: [Main Section Header 1]**\n    -   **H3: [Sub-Section Header 1.1]**\n        -   **Content Outline**: [Content points for 1.1]\n    -   **H3: [Sub-Section Header 1.2]**\n        -   **Content Outline:** [Content points for 1.2]\n    -   **Media Ideas:** [Image, Video, Infographic, etc.]\n\n**H2: [Main Section Header 2]**\n    -   **H3: [Sub-Section Header 2.1]**\n        -   **Content Outline**: [Content points for 2.1]\n    -   **H3: [Sub-Section Header 2.2]**\n        -   **Content Outline:** [Content points for 2.2]\n    -   **Media Ideas:** [Image, Video, Infographic, etc.]\n\n(Continue until you have a robust outline for the new piece of content)\n</example_output_template>\n</instructions>",
+                "value": "You are an expert SEO content strategist. Your task is to create a comprehensive, SEO-optimized content outline based on the provided information. This outline should be structured to maximize search engine visibility and user engagement.\n\n# Input Data\n\nThe input data will be provided in a structured format, including:\n\n- **Competitive Keyword Targets:** A table listing URLs and their associated target keywords with search volume.\n- **Recurring Topics:** A list of topics identified across competitive pages, including the pages where they appear and a summary of their importance.\n- **Insights for SEO Optimization:** A list of key takeaways for optimizing the content.\n- **Consolidated External Links:** A list of external links found on competitive pages.\n- **Competitive Page Review:** Detailed content overviews for each competitive URL, including section titles, key points, and subheadings.\n\n# Job Requirements\n\nBased on the input data, generate a detailed content outline that includes:\n\n1.  **Main Section Headers (H2s):** These should be the primary sections of the content. Use the recurring topics and competitive page reviews to determine the most important sections. Each H2 should be optimized for relevant keywords.\n2.  **Sub-Section Headers (H3s):** For each main section, include relevant sub-sections that further break down the topic. Use the competitive page reviews to identify relevant sub-topics.\n3.  **Content Outline for Each Section:** For each H2 and H3, provide a brief outline of the content that should be included. This should be based on the competitive page reviews, recurring topics, and SEO insights.\n4.  **Media Ideas:** For each section (H2), suggest relevant media that could enhance the content and user engagement. This could include images, videos, infographics, interactive elements, survey results, or other creative content.\n\n**Core Considerations:**\n\n- **Keyword Optimization:** Use the provided keyword targets to inform the selection of section headers and content. Prioritize keywords with higher search volume.\n- **Competitive Analysis:** Leverage the competitive page reviews to understand the structure and content of top-ranking pages. Identify gaps and opportunities to create more comprehensive and valuable content.\n- **User Intent:** Ensure the content addresses the user's search intent for the target keywords.\n- **SEO Best Practices:** Follow SEO best practices for on-page optimization, including the use of headers, keywords, and internal/external links.\n- **Uniqueness:** While referencing competitive pages, ensure the content is unique and provides added value.\n- **Actionable Insights:** The outline should provide clear guidance for content creation, not just a summary of existing information.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of this specified structure. Your response MUST start with \"## Content Outline:\".\n\n# Output Format\n\n## Content Outline:\n\n**H2: [Main Section Header 1]** - **H3: [Sub-Section Header 1.1]** - **Content Outline**: [Content points for 1.1] - **H3: [Sub-Section Header 1.2]** - **Content Outline:** [Content points for 1.2] - **Media Ideas:** [Image, Video, Infographic, etc.]\n\n**H2: [Main Section Header 2]** - **H3: [Sub-Section Header 2.1]** - **Content Outline**: [Content points for 2.1] - **H3: [Sub-Section Header 2.2]** - **Content Outline:** [Content points for 2.2] - **Media Ideas:** [Image, Video, Infographic, etc.]\n\n(Continue until you have a robust outline for the new piece of content)\n",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -4251,7 +4249,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Content Outline System Prompt",
+            "display_name": "ContentOutlineGenerator",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -4284,15 +4282,14 @@
             "error": null,
             "edited": false,
             "metadata": {},
-            "tool_mode": false,
-            "lf_version": "1.1.1"
+            "tool_mode": false
           },
           "type": "Prompt",
           "id": "Prompt-oVvAE"
         },
         "selected": false,
         "width": 320,
-        "height": 258,
+        "height": 260,
         "positionAbsolute": {
           "x": 4957.313320594426,
           "y": 502.25264163149586
@@ -4303,8 +4300,8 @@
         "id": "OpenAIModel-XmSPt",
         "type": "genericNode",
         "position": {
-          "x": 5362.274676182218,
-          "y": 1547.312797510334
+          "x": 5328.230026932783,
+          "y": 1488.5084033522196
         },
         "data": {
           "node": {
@@ -4640,10 +4637,10 @@
         },
         "selected": false,
         "width": 320,
-        "height": 668,
+        "height": 674,
         "positionAbsolute": {
-          "x": 5362.274676182218,
-          "y": 1547.312797510334
+          "x": 5328.230026932783,
+          "y": 1488.5084033522196
         },
         "dragging": false
       },
@@ -4651,8 +4648,8 @@
         "id": "Prompt-GZazp",
         "type": "genericNode",
         "position": {
-          "x": 4958.465981549932,
-          "y": 1602.712206108567
+          "x": 4942.991140982007,
+          "y": 1531.527939496113
         },
         "data": {
           "node": {
@@ -4749,7 +4746,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Primary Header Creation Prompt",
+            "display_name": "Prompt",
             "documentation": "",
             "custom_fields": {
               "template": [
@@ -4792,11 +4789,11 @@
         },
         "selected": false,
         "width": 320,
-        "height": 429,
+        "height": 433,
         "dragging": false,
         "positionAbsolute": {
-          "x": 4958.465981549932,
-          "y": 1602.712206108567
+          "x": 4942.991140982007,
+          "y": 1531.527939496113
         }
       },
       {
@@ -4937,7 +4934,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 424,
+        "height": 427,
         "positionAbsolute": {
           "x": 5978.258423278763,
           "y": 1154.9164071023336
@@ -5212,7 +5209,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 232,
+        "height": 234,
         "positionAbsolute": {
           "x": 6707.148452159425,
           "y": 1260.1650530940249
@@ -5402,7 +5399,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 549,
+        "height": 554,
         "positionAbsolute": {
           "x": 2771.3535359631733,
           "y": 389.7653976025373
@@ -5413,8 +5410,8 @@
         "id": "Prompt-SMnoD",
         "type": "genericNode",
         "position": {
-          "x": 4949.270221800929,
-          "y": 2106.010204016924
+          "x": 4947.333333475757,
+          "y": 2015.9774370471014
         },
         "data": {
           "node": {
@@ -5446,7 +5443,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "template",
-                "value": "<instructions>\n<task_outline>\n**Task**: Create an SEO-optimized and compelling <h1> heading for the article.\n\n1. Incorporate Key SEO Elements: Utilize the provided competitive keywords effectively to enhance the page's searchability. The keywords should be integrated naturally into the title.\n2. Prioritize Higher Volume Keywords: The keywords will be formatted like \"Keyword Target (Search Volume)\" and you should prioritize the highest volume keywords.\n3. Be Compelling to the Reader: Craft a title that is engaging and encourages potential readers to click through to the content.\n4. Adhere to Length Constraints: Keep the title within a maximum of 80 characters.\n5. Demonstrate Creativity and Clarity: The title should be creative enough to stand out while still being clear about the content's focus.\n\n**IMPORTANT**: Do not include any additional preamble, commentary, or formatting outside of the specified structure in <output_format>. Your response MUST start with \"#\" to indicate a markdown H1 tag.\n</task_outline>\n\n<output_format>\n# [H1 tag without any preamble or commentary]\n</output_format>\n</instructions>",
+                "value": "Create an SEO-optimized and compelling H1 heading for the article.\n\n- **Incorporate Key SEO Elements**: Utilize the provided competitive keywords effectively to enhance the page's searchability. The keywords should be integrated naturally into the title.\n- **Prioritize Higher Volume Keywords**: The keywords will be formatted like \"Keyword Target (Search Volume)\" and you should prioritize the highest volume keywords.\n- **Be Compelling to the Reader**: Craft a title that is engaging and encourages potential readers to click through to the content.\n- **Adhere to Length Constraints**: Keep the title within a maximum of 80 characters.\n- **Demonstrate Creativity and Clarity**: The title should be creative enough to stand out while still being clear about the content's focus.\n\n**Important**: Do not include any additional preamble, commentary, or formatting outside of the specified structure in the output format. Your response MUST start with \"#\" to indicate a markdown H1 tag.\n\n# Output Format\n\n# [H1 tag without any preamble or commentary]",
                 "display_name": "Template",
                 "advanced": false,
                 "dynamic": false,
@@ -5465,7 +5462,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Primary Header Creation Prompt",
+            "display_name": "PrimaryHeaderCreationPrompt",
             "documentation": "",
             "custom_fields": {
               "template": []
@@ -5505,10 +5502,10 @@
         },
         "selected": false,
         "width": 320,
-        "height": 258,
+        "height": 260,
         "positionAbsolute": {
-          "x": 4949.270221800929,
-          "y": 2106.010204016924
+          "x": 4947.333333475757,
+          "y": 2015.9774370471014
         },
         "dragging": false
       },
@@ -5660,7 +5657,7 @@
               "Message"
             ],
             "name": "",
-            "display_name": "Content Outline Prompt",
+            "display_name": "Prompt",
             "documentation": "",
             "custom_fields": {
               "template": [
@@ -5705,7 +5702,7 @@
         },
         "selected": false,
         "width": 320,
-        "height": 600,
+        "height": 606,
         "positionAbsolute": {
           "x": 4957.089084765751,
           "y": 820.7651946614264
@@ -6486,13 +6483,13 @@
       }
     ],
     "viewport": {
-      "x": -3236.599524903165,
-      "y": -495.7137945859671,
-      "zoom": 0.8475857211600664
+      "x": -361.12084320273357,
+      "y": -150.3461331593005,
+      "zoom": 0.3420017124664569
     }
   },
   "is_component": false,
-  "updated_at": "2025-01-03T01:57:12+00:00",
+  "updated_at": "2025-01-15T01:08:09+00:00",
   "icon": null,
   "name": "Editorial Content Briefing Agent",
   "icon_bg_color": null,

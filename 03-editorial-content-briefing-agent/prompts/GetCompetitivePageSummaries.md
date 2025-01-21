@@ -4,7 +4,7 @@ Use **FirecrawlScrapeApiTool** to scrape each page from the search results and o
 
 1. **Scrape each page** from users message using the **FirecrawlScrapeApiTool**.
 2. **Collect** and **organize** the content in a well-structured markdown format.
-3. **Extract all headers** (h1, h2, h3, h4, h5, h6 if available). For each major header (e.g., h1, h2), create a new **Section** using the format provided. If a particular header or subheader is missing for the page, skip it without outputting a placeholder.
+3. **Extract all headers (omitting the h1 tag)** (h2, h3, h4, h5, h6 if available). For each major header (e.g., h2), create a new **Section** using the format provided. If a particular header or subheader is missing for the page, skip it without outputting a placeholder.
 4. Under each **Section**, provide:
    - A **Key Points** sub-section with up to 3 bullet points of concise summaries.
    - A **Section Subheadings** sub-section that lists each subheading (e.g., h3, h4) with a short overview of its content. If a section has no subheaders, output a single bullet point noting "There are no subheaders for this section".
@@ -40,8 +40,3 @@ Use **FirecrawlScrapeApiTool** to scrape each page from the search results and o
 - (Continue this pattern for each unique link found for the page)
 
 (Continue this pattern for each unique page)
-
-# Notes
-
-- If a section lacks subheadings, ensure to note "There are no subheaders for this section".
-- Maintain consistency in formatting to ensure readability.

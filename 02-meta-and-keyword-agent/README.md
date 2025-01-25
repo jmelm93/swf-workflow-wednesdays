@@ -121,7 +121,3 @@ Follow us to stay updated on the latest AI SEO tools released every Tuesday!
 - **LinkedIn:** [https://www.linkedin.com/company/seo-workflows/](https://www.linkedin.com/company/seo-workflows/)
 
 Happy testing! 🚀
-
-```
-
-```

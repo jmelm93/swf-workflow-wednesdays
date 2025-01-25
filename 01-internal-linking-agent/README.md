@@ -1,6 +1,7 @@
 # Week 1 - Internal Link Placement Agent
 
-_You can find the video tutorial for this tool here: [Watch on YouTube](https://www.youtube.com/watch?v=mDMLxqcB85Y)._
+- _You can find the video tutorial for this tool here: [Watch on YouTube](https://www.youtube.com/watch?v=mDMLxqcB85Y)._
+- _You can find a live demo of this tool here: [Test the workflow now](https://ai.seoworkflows.com/tool/internal-link-placement-agent)._
 
 ## Overview
 
